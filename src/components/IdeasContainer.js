@@ -22,10 +22,15 @@ componentDidMount() {
   render(){
     return (
       <div>
-        {this.state.ideas.map((idea) => {
-          return (<Idea idea={idea} key={idea.id} />)
-        })}
-      </div>
+          <button className="newIdeaButton">
+            New idea
+          </button>
+          <div>
+            {this.state.ideas.map((idea) => {
+              return (<Idea idea={idea} key={idea.id} />)
+            })}
+          </div>
+      </div>    
     );
   }
 
