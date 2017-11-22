@@ -58,6 +58,7 @@ addNewIdea = () => {
                 return (<IdeaForm idea={idea} key={idea.id} />)
               } else {
               return (<Idea idea={idea} key={idea.id} />)
+            }
             })}
           </div>
       </div>
