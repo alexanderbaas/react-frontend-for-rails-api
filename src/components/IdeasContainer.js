@@ -47,12 +47,17 @@ addNewIdea = () => {
 }
 
 updateIdea = (idea) => {
-  const ideaIndex = this.state.idea.findIndex(x => x.id === idea.id)
+  const ideaIndex = this.state.ideas.findIndex(x => x.id === idea.id)
   const ideas = update(this.state.ideas, {
     [ideaIndex]: { $set: idea }
   })
   this.setState({ideas: ideas, notification: 'All changes saved'
   })
+}
+
+
+enableEditing = (id) => {
+  this.setState({editingIdeaId: id})
 }
 
 
@@ -64,7 +69,7 @@ updateIdea = (idea) => {
             New idea
           </button>
 
-          <span className-"notification">
+          <span className="notification">
             {this.state.notification}
           </span>
 
@@ -74,7 +79,7 @@ updateIdea = (idea) => {
                 return (<IdeaForm idea={idea} key={idea.id}
                   updateIdea={this.updateIdea} />)
               } else {
-              return (<Idea idea={idea} key={idea.id} />)
+              return (<Idea idea={idea} key={idea.id} onClick={this.enableEditing} />)
             }
             })}
           </div>
