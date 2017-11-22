@@ -55,9 +55,13 @@ updateIdea = (idea) => {
   })
 }
 
+resetNotification = () => {
+  this.setState({notification: ''})
+}
 
 enableEditing = (id) => {
-  this.setState({editingIdeaId: id})
+  this.setState({editingIdeaId: id},
+  () => { this.title.focus() })
 }
 
 
@@ -77,7 +81,9 @@ enableEditing = (id) => {
             {this.state.ideas.map((idea) => {
               if(this.state.editingIdeaId === idea.id) {
                 return (<IdeaForm idea={idea} key={idea.id}
-                  updateIdea={this.updateIdea} />)
+                  updateIdea={this.updateIdea}
+                  titleRef={input => this.title = input}
+                  resetNotification={this.resetNotification} />)
               } else {
               return (<Idea idea={idea} key={idea.id} onClick={this.enableEditing} />)
             }
