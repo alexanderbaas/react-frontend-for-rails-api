@@ -19,10 +19,29 @@ componentDidMount() {
   .catch(error => console.log(error))
 }
 
+
+addNewIdea = () => {
+    axios.post(
+      'http://localhost:3001/api/v1/ideas',
+      { idea:
+        {
+          title: '',
+          body: ''
+        }
+      }
+    )
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => console.log(error))
+}
+
+
   render(){
     return (
       <div>
-          <button className="newIdeaButton">
+          <button className="newIdeaButton"
+            onClick={this.addNewIdea} >
             New idea
           </button>
           <div>
@@ -30,7 +49,7 @@ componentDidMount() {
               return (<Idea idea={idea} key={idea.id} />)
             })}
           </div>
-      </div>    
+      </div>
     );
   }
 
