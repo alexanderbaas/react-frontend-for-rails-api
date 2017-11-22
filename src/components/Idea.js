@@ -6,10 +6,15 @@ class Idea extends Component {
       this.props.onClick(this.props.idea.id)
     }
 
+    handleDelete = () => {
+      this.props.onDelete(this.props.idea.id)
+    }
+
+
     render () {
         return(
           <div className="tile">
-            <span className="deleteButton">
+            <span className="deleteButton" onClick={this.handleDelete} >
               x
             </span>
             <h4 onClick={this.handleClick}>
