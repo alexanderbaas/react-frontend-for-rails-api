@@ -8,7 +8,9 @@ class IdeasContainer extends Component {
   constructor(props) {
   super(props)
   this.state = {
-    ideas: []
+    ideas: [],
+    editingIdeaId: null,
+    notifcation: ''
   }
 }
 
@@ -49,7 +51,8 @@ updateIdea = (idea) => {
   const ideas = update(this.state.ideas, {
     [ideaIndex]: { $set: idea }
   })
-  this.setState({ideas: ideas})
+  this.setState({ideas: ideas, notification: 'All changes saved'
+  })
 }
 
 
@@ -60,6 +63,11 @@ updateIdea = (idea) => {
             onClick={this.addNewIdea} >
             New idea
           </button>
+
+          <span className-"notification">
+            {this.state.notification}
+          </span>
+
           <div>
             {this.state.ideas.map((idea) => {
               if(this.state.editingIdeaId === idea.id) {
